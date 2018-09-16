@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class ImageViewerViewController: UIViewController {
     
@@ -8,6 +9,9 @@ class ImageViewerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageView.kf.setImage(with: URL(string: imageUrl)!) { (image, error, cacheType, url) in
+            print(error)
+        }
     }
     
     static func storyboardInstance(url: String) -> ImageViewerViewController {

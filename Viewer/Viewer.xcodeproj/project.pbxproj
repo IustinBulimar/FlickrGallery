@@ -17,6 +17,10 @@
 		D10A1BB8214D50E400BB9D66 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BB1214D50E400BB9D66 /* Info.plist */; };
 		D10A1BBA214D515A00BB9D66 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BB9214D515A00BB9D66 /* ImageViewerViewController.swift */; };
 		D10A1BBC214D518E00BB9D66 /* ImageViewerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BBB214D518E00BB9D66 /* ImageViewerViewController.storyboard */; };
+		D10A1BBF214E60A400BB9D66 /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BBE214E60A400BB9D66 /* RemoteData.swift */; };
+		D10A1BC1214E6C3900BB9D66 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BC0214E6C3900BB9D66 /* Photo.swift */; };
+		D10A1BC3214E6F8200BB9D66 /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BC2214E6F8200BB9D66 /* PhotosResponse.swift */; };
+		D10A1BC7214F1CBA00BB9D66 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BC6214F1CBA00BB9D66 /* String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		D10A1BB1214D50E400BB9D66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D10A1BB9214D515A00BB9D66 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		D10A1BBB214D518E00BB9D66 /* ImageViewerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageViewerViewController.storyboard; sourceTree = "<group>"; };
+		D10A1BBE214E60A400BB9D66 /* RemoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteData.swift; sourceTree = "<group>"; };
+		D10A1BC0214E6C3900BB9D66 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		D10A1BC2214E6F8200BB9D66 /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
+		D10A1BC6214F1CBA00BB9D66 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DEC4B0F689EE8A4A5FDDACAD /* Pods-Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viewer/Pods-Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				D10A1BA4214D50E400BB9D66 /* Resources */,
+				D10A1BBD214E5FC400BB9D66 /* Data */,
 				D10A1BA6214D50E400BB9D66 /* Sources */,
 				D10A1BAF214D50E400BB9D66 /* Helpers */,
 				D10A1BB1214D50E400BB9D66 /* Info.plist */,
@@ -150,8 +159,19 @@
 			isa = PBXGroup;
 			children = (
 				D10A1BB0214D50E400BB9D66 /* UIViewController.swift */,
+				D10A1BC6214F1CBA00BB9D66 /* String.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D10A1BBD214E5FC400BB9D66 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D10A1BBE214E60A400BB9D66 /* RemoteData.swift */,
+				D10A1BC2214E6F8200BB9D66 /* PhotosResponse.swift */,
+				D10A1BC0214E6C3900BB9D66 /* Photo.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,9 +286,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Viewer/Pods-Viewer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -282,9 +307,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10A1BC1214E6C3900BB9D66 /* Photo.swift in Sources */,
 				D10A1BB4214D50E400BB9D66 /* AppDelegate.swift in Sources */,
 				D10A1BB6214D50E400BB9D66 /* GalleryViewController.swift in Sources */,
 				D10A1BBA214D515A00BB9D66 /* ImageViewerViewController.swift in Sources */,
+				D10A1BBF214E60A400BB9D66 /* RemoteData.swift in Sources */,
+				D10A1BC3214E6F8200BB9D66 /* PhotosResponse.swift in Sources */,
+				D10A1BC7214F1CBA00BB9D66 /* String.swift in Sources */,
 				D10A1BB7214D50E400BB9D66 /* UIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
