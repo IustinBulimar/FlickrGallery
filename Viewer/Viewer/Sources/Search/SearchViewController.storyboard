@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z8F-bl-hHs">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="Gnt-W0-Oiv">
+            <objects>
+                <viewController id="z8F-bl-hHs" customClass="SearchViewController" customModule="Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fKH-Q0-Ua8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="64p-pg-cdA">
+                                <rect key="frame" x="0.0" y="100" width="375" height="629"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7J7-47-DIg">
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="64p-pg-cdA" firstAttribute="top" secondItem="7J7-47-DIg" secondAttribute="bottom" id="2fb-GR-int"/>
+                            <constraint firstItem="7J7-47-DIg" firstAttribute="leading" secondItem="XEi-Yj-gik" secondAttribute="leading" id="FkG-fm-JYD"/>
+                            <constraint firstItem="64p-pg-cdA" firstAttribute="leading" secondItem="XEi-Yj-gik" secondAttribute="leading" id="TeD-oe-t5E"/>
+                            <constraint firstItem="64p-pg-cdA" firstAttribute="bottom" secondItem="XEi-Yj-gik" secondAttribute="bottom" id="a2q-9a-63W"/>
+                            <constraint firstItem="7J7-47-DIg" firstAttribute="top" secondItem="XEi-Yj-gik" secondAttribute="top" id="dOd-Vx-VPS"/>
+                            <constraint firstItem="7J7-47-DIg" firstAttribute="trailing" secondItem="XEi-Yj-gik" secondAttribute="trailing" id="ghH-nD-iae"/>
+                            <constraint firstItem="64p-pg-cdA" firstAttribute="trailing" secondItem="XEi-Yj-gik" secondAttribute="trailing" id="qGT-Ox-Czk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XEi-Yj-gik"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YG7-n2-XFw">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchBar" destination="7J7-47-DIg" id="2u5-3z-EgJ"/>
+                        <outlet property="tableView" destination="64p-pg-cdA" id="Kzk-8t-wAh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdW-PS-0fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="224.80000000000001" y="113.79310344827587"/>
+        </scene>
+    </scenes>
+</document>

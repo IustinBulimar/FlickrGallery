@@ -18,24 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCM-kl-drt">
-                                <rect key="frame" x="148" y="391" width="79" height="30"/>
-                                <state key="normal" title="View image"/>
-                                <connections>
-                                    <action selector="didTapViewImageButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dby-gV-mex"/>
-                                </connections>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i0E-hu-GoW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="xCM-kl-drt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8XM-dX-jPx"/>
-                            <constraint firstItem="xCM-kl-drt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="PMR-BD-UkM"/>
+                            <constraint firstItem="i0E-hu-GoW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5iT-bT-eFK"/>
+                            <constraint firstItem="i0E-hu-GoW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9De-lF-D32"/>
+                            <constraint firstItem="i0E-hu-GoW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="IIw-uZ-viN"/>
+                            <constraint firstAttribute="trailing" secondItem="i0E-hu-GoW" secondAttribute="trailing" id="KaT-UI-ukE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="i0E-hu-GoW" id="o1C-QZ-CR2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="34.729064039408868"/>
         </scene>
     </scenes>
 </document>

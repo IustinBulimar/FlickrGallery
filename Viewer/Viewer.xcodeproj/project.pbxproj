@@ -15,12 +15,19 @@
 		D10A1BB6214D50E400BB9D66 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BAE214D50E400BB9D66 /* GalleryViewController.swift */; };
 		D10A1BB7214D50E400BB9D66 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BB0214D50E400BB9D66 /* UIViewController.swift */; };
 		D10A1BB8214D50E400BB9D66 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BB1214D50E400BB9D66 /* Info.plist */; };
-		D10A1BBA214D515A00BB9D66 /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BB9214D515A00BB9D66 /* ImageViewerViewController.swift */; };
-		D10A1BBC214D518E00BB9D66 /* ImageViewerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BBB214D518E00BB9D66 /* ImageViewerViewController.storyboard */; };
+		D10A1BBA214D515A00BB9D66 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BB9214D515A00BB9D66 /* PhotoViewerViewController.swift */; };
+		D10A1BBC214D518E00BB9D66 /* PhotoViewerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BBB214D518E00BB9D66 /* PhotoViewerViewController.storyboard */; };
 		D10A1BBF214E60A400BB9D66 /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BBE214E60A400BB9D66 /* RemoteData.swift */; };
 		D10A1BC1214E6C3900BB9D66 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BC0214E6C3900BB9D66 /* Photo.swift */; };
 		D10A1BC3214E6F8200BB9D66 /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BC2214E6F8200BB9D66 /* PhotosResponse.swift */; };
 		D10A1BC7214F1CBA00BB9D66 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BC6214F1CBA00BB9D66 /* String.swift */; };
+		D10A1BCA214F1F8500BB9D66 /* HomeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BC9214F1F8500BB9D66 /* HomeViewController.storyboard */; };
+		D10A1BCC214F1F9100BB9D66 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BCB214F1F9100BB9D66 /* HomeViewController.swift */; };
+		D10A1BCE214F240B00BB9D66 /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BCD214F240B00BB9D66 /* PhotoCell.xib */; };
+		D10A1BD0214F241700BB9D66 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BCF214F241700BB9D66 /* PhotoCell.swift */; };
+		D10A1BD2214F258400BB9D66 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BD1214F258400BB9D66 /* UITableView.swift */; };
+		D10A1BD5214F2F4600BB9D66 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BD4214F2F4600BB9D66 /* SearchViewController.storyboard */; };
+		D10A1BD7214F2F6000BB9D66 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BD6214F2F6000BB9D66 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,12 +41,19 @@
 		D10A1BAE214D50E400BB9D66 /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
 		D10A1BB0214D50E400BB9D66 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		D10A1BB1214D50E400BB9D66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D10A1BB9214D515A00BB9D66 /* ImageViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
-		D10A1BBB214D518E00BB9D66 /* ImageViewerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageViewerViewController.storyboard; sourceTree = "<group>"; };
+		D10A1BB9214D515A00BB9D66 /* PhotoViewerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerViewController.swift; sourceTree = "<group>"; };
+		D10A1BBB214D518E00BB9D66 /* PhotoViewerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoViewerViewController.storyboard; sourceTree = "<group>"; };
 		D10A1BBE214E60A400BB9D66 /* RemoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteData.swift; sourceTree = "<group>"; };
 		D10A1BC0214E6C3900BB9D66 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		D10A1BC2214E6F8200BB9D66 /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
 		D10A1BC6214F1CBA00BB9D66 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		D10A1BC9214F1F8500BB9D66 /* HomeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeViewController.storyboard; sourceTree = "<group>"; };
+		D10A1BCB214F1F9100BB9D66 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D10A1BCD214F240B00BB9D66 /* PhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
+		D10A1BCF214F241700BB9D66 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		D10A1BD1214F258400BB9D66 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		D10A1BD4214F2F4600BB9D66 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
+		D10A1BD6214F2F6000BB9D66 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		DEC4B0F689EE8A4A5FDDACAD /* Pods-Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viewer/Pods-Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,8 +128,11 @@
 			isa = PBXGroup;
 			children = (
 				D10A1BAA214D50E400BB9D66 /* App */,
+				D10A1BC8214F1F6E00BB9D66 /* Home */,
 				D10A1BAC214D50E400BB9D66 /* Gallery */,
-				D10A1BA9214D50E400BB9D66 /* ImageViewer */,
+				D10A1BD3214F2F3B00BB9D66 /* Search */,
+				D10A1BA9214D50E400BB9D66 /* PhotoViewer */,
+				D10A1BD8214F487A00BB9D66 /* PhotoCell */,
 				D10A1BA7214D50E400BB9D66 /* LaunchScreen */,
 			);
 			path = Sources;
@@ -129,13 +146,13 @@
 			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
-		D10A1BA9214D50E400BB9D66 /* ImageViewer */ = {
+		D10A1BA9214D50E400BB9D66 /* PhotoViewer */ = {
 			isa = PBXGroup;
 			children = (
-				D10A1BBB214D518E00BB9D66 /* ImageViewerViewController.storyboard */,
-				D10A1BB9214D515A00BB9D66 /* ImageViewerViewController.swift */,
+				D10A1BBB214D518E00BB9D66 /* PhotoViewerViewController.storyboard */,
+				D10A1BB9214D515A00BB9D66 /* PhotoViewerViewController.swift */,
 			);
-			path = ImageViewer;
+			path = PhotoViewer;
 			sourceTree = "<group>";
 		};
 		D10A1BAA214D50E400BB9D66 /* App */ = {
@@ -159,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				D10A1BB0214D50E400BB9D66 /* UIViewController.swift */,
+				D10A1BD1214F258400BB9D66 /* UITableView.swift */,
 				D10A1BC6214F1CBA00BB9D66 /* String.swift */,
 			);
 			path = Helpers;
@@ -172,6 +190,33 @@
 				D10A1BC0214E6C3900BB9D66 /* Photo.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		D10A1BC8214F1F6E00BB9D66 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D10A1BC9214F1F8500BB9D66 /* HomeViewController.storyboard */,
+				D10A1BCB214F1F9100BB9D66 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D10A1BD3214F2F3B00BB9D66 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D10A1BD4214F2F4600BB9D66 /* SearchViewController.storyboard */,
+				D10A1BD6214F2F6000BB9D66 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		D10A1BD8214F487A00BB9D66 /* PhotoCell */ = {
+			isa = PBXGroup;
+			children = (
+				D10A1BCD214F240B00BB9D66 /* PhotoCell.xib */,
+				D10A1BCF214F241700BB9D66 /* PhotoCell.swift */,
+			);
+			path = PhotoCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,11 +281,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D10A1BBC214D518E00BB9D66 /* ImageViewerViewController.storyboard in Resources */,
+				D10A1BBC214D518E00BB9D66 /* PhotoViewerViewController.storyboard in Resources */,
 				D10A1BB8214D50E400BB9D66 /* Info.plist in Resources */,
+				D10A1BCA214F1F8500BB9D66 /* HomeViewController.storyboard in Resources */,
 				D10A1BB2214D50E400BB9D66 /* Images.xcassets in Resources */,
 				D10A1BB5214D50E400BB9D66 /* GalleryViewController.storyboard in Resources */,
+				D10A1BD5214F2F4600BB9D66 /* SearchViewController.storyboard in Resources */,
 				D10A1BB3214D50E400BB9D66 /* LaunchScreen.storyboard in Resources */,
+				D10A1BCE214F240B00BB9D66 /* PhotoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,8 +358,12 @@
 				D10A1BC1214E6C3900BB9D66 /* Photo.swift in Sources */,
 				D10A1BB4214D50E400BB9D66 /* AppDelegate.swift in Sources */,
 				D10A1BB6214D50E400BB9D66 /* GalleryViewController.swift in Sources */,
-				D10A1BBA214D515A00BB9D66 /* ImageViewerViewController.swift in Sources */,
+				D10A1BBA214D515A00BB9D66 /* PhotoViewerViewController.swift in Sources */,
 				D10A1BBF214E60A400BB9D66 /* RemoteData.swift in Sources */,
+				D10A1BCC214F1F9100BB9D66 /* HomeViewController.swift in Sources */,
+				D10A1BD7214F2F6000BB9D66 /* SearchViewController.swift in Sources */,
+				D10A1BD0214F241700BB9D66 /* PhotoCell.swift in Sources */,
+				D10A1BD2214F258400BB9D66 /* UITableView.swift in Sources */,
 				D10A1BC3214E6F8200BB9D66 /* PhotosResponse.swift in Sources */,
 				D10A1BC7214F1CBA00BB9D66 /* String.swift in Sources */,
 				D10A1BB7214D50E400BB9D66 /* UIViewController.swift in Sources */,

@@ -1,7 +1,8 @@
 import UIKit
 
-class GalleryViewController: UIViewController {
+class SearchViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
     var photos: [Photo] = []
@@ -14,8 +15,12 @@ class GalleryViewController: UIViewController {
         tableView.rowHeight = 250
         tableView.dataSource = self
         tableView.delegate = self
-        
-        RemoteData.getRecentPhotos()
+        searchBar.delegate = self
+        searchBar.becomeFirstResponder()
+    }
+    
+    func searchPhotos() {
+        RemoteData.searchPhotos(text: searchBar.text ?? "")
             .done { photosResponse in
                 self.photos = photosResponse.info.photos
                 self.tableView.reloadData()
@@ -26,7 +31,7 @@ class GalleryViewController: UIViewController {
     
 }
 
-extension GalleryViewController: UITableViewDataSource {
+extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return photos.count
@@ -46,7 +51,7 @@ extension GalleryViewController: UITableViewDataSource {
     
 }
 
-extension GalleryViewController: UITableViewDelegate {
+extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
@@ -56,4 +61,18 @@ extension GalleryViewController: UITableViewDelegate {
     }
     
 }
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        searchPhotos()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+    }
+    
+}
+
 

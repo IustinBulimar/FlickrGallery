@@ -10,16 +10,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Image Viewer View Controller-->
+        <!--Photo Viewer View Controller-->
         <scene sceneID="csI-h1-zdC">
             <objects>
-                <viewController id="bHP-nr-WdY" customClass="ImageViewerViewController" customModule="Viewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bHP-nr-WdY" customClass="PhotoViewerViewController" customModule="Viewer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kkg-lp-B09">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dc3-rL-8Mo">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dc3-rL-8Mo">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rhC-Q4-rp3" appends="YES" id="o4h-oy-m2q"/>
+                                </connections>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -32,10 +36,15 @@
                         <viewLayoutGuide key="safeArea" id="LJc-X2-IDp"/>
                     </view>
                     <connections>
-                        <outlet property="imageView" destination="dc3-rL-8Mo" id="gBh-Np-IWr"/>
+                        <outlet property="photoImageView" destination="dc3-rL-8Mo" id="Uhj-Ad-smN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXY-CC-VcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="rhC-Q4-rp3">
+                    <connections>
+                        <action selector="didTapImageView:" destination="bHP-nr-WdY" id="yda-Za-2GW"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="192.80000000000001" y="138.91625615763547"/>
         </scene>
