@@ -24,7 +24,7 @@ class SearchViewController: UIViewController {
     
     func getNextSearchPhotosPage() {
         guard page <= pages else { return }
-        RemoteData.searchPhotos(text: searchBar.text ?? "", page: page)
+        RemoteData.getPhotos(type: .search(page: page, text: searchBar.text ?? ""))
             .done { photosResponse in
                 self.photos += photosResponse.info.photos
                 self.page = photosResponse.info.page + 1

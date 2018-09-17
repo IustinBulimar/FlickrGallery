@@ -5,6 +5,8 @@ class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        RemoteData.authenticate(viewController: self)
+        
         let popularViewController = GalleryViewController.storyboardInstance()
         popularViewController.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "home_icon"), tag: 1)
         

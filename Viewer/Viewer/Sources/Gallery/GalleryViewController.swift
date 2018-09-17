@@ -25,7 +25,7 @@ class GalleryViewController: UIViewController {
     
     func getNextPhotosPage() {
         guard page <= pages else { return }
-        RemoteData.getRecentPhotos(page: page)
+        RemoteData.getPhotos(type: .recent(page: page))
             .done { photosResponse in
                 self.photos += photosResponse.info.photos
                 self.page = photosResponse.info.page + 1

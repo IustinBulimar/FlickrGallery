@@ -1,82 +1,107 @@
-import Foundation
+import UIKit
 import PromiseKit
+import OAuthSwift
+import SafariServices
+import KeychainSwift
 
 class RemoteData {
     
-    enum FlickrMethod: String {
-        case getRecent = "flickr.photos.getRecent"
-        case getPopular = "flickr.photos.getPopular"
-        case search = "flickr.photos.search"
+    enum PhotosType {
+        case recent(page: Int)
+        case popular(page: Int)
+        case search(page: Int, text: String)
+        
+        var method: String {
+            switch self {
+            case .recent: return "flickr.photos.getRecent"
+            case .popular: return "flickr.photos.getPopular"
+            case .search: return "flickr.photos.search"
+            }
+        }
+        
+        var params: [String: String] {
+            var defaultParams = [
+                "api_key": apiKey,
+                "method": method,
+                "format": "json",
+                "nojsoncallback": "1",
+                "sort": "relevance",
+                "content_type": "1",
+                "per_page": "20"
+            ]
+            switch self {
+            case .recent(let page):
+                defaultParams["page"] = "\(page)"
+                
+            case .popular(let page):
+                defaultParams["page"] = "\(page)"
+                
+            case .search(let page, let text):
+                defaultParams["page"] = "\(page)"
+                defaultParams["text"] = text
+            }
+            return defaultParams
+        }
     }
     
     private static let apiKey = "02e944b562f4779e04132e9007f789f3"
+    private static let apiSecret = "3f869ed599da8ad8"
     
-    private static func url(for method: FlickrMethod, params: [String: String] = [:]) -> URL? {
-        var defaultParams = [
-            "api_key": apiKey,
-            "method": method.rawValue,
-            "format": "json",
-            "nojsoncallback": "1",
-            "sort": "relevance",
-            "content_type": "1",
-            "per_page": "20"
-        ]
-        for (key, value) in params {
-            defaultParams[key] = value
+    private static var oauth: OAuth1Swift!
+    
+    static func authenticate(viewController: UIViewController) {
+        oauth = OAuth1Swift(
+            consumerKey: apiKey,
+            consumerSecret: apiSecret,
+            requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
+            authorizeUrl: "https://www.flickr.com/services/oauth/authorize",
+            accessTokenUrl: "https://www.flickr.com/services/oauth/access_token"
+        )
+        
+        let keychain = KeychainSwift()
+        if let oauthToken = keychain.get("oauthToken"),
+            let oauthTokenSecret = keychain.get("oauthTokenSecret") {
+            oauth.client.credential.oauthToken = oauthToken
+            oauth.client.credential.oauthTokenSecret = oauthTokenSecret
+        } else {
+            let handler = SafariURLHandler(viewController: viewController, oauthSwift: self.oauth!)
+            handler.factory = { url in
+                let controller = SFSafariViewController(url: url)
+                return controller
+            }
+            oauth.authorizeURLHandler = handler
+            let _ = oauth.authorize(withCallbackURL: URL(string: "Viewer://oauth-callback/flickr")!,
+                                    success: { credential, response, parameters in
+                                        let keychain = KeychainSwift()
+                                        keychain.set(oauth.client.credential.oauthToken, forKey: "oauthToken")
+                                        keychain.set(oauth.client.credential.oauthTokenSecret, forKey: "oauthTokenSecret")
+            },
+                                    failure: { error in
+                                        print(error.description)
+            })
         }
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api.flickr.com"
-        components.path = "/services/rest"
-        components.queryItems = defaultParams.map { URLQueryItem(name: $0, value: $1) }
-        return components.url
     }
     
-    private static func urlRequest(for method: FlickrMethod, params: [String: String] = [:]) throws -> URLRequest {
-        guard let url = url(for: method, params: params) else {
-            throw "Invalid URL"
+    static func getPhotos(type: PhotosType) -> Promise<PhotosResponse> {
+        return Promise { seal in
+            _ = self.oauth.client.get("https://api.flickr.com/services/rest",
+                                      parameters: type.params,
+                                      success: { response in
+                                        do {
+                                            let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: response.data)
+                                            seal.fulfill(photosResponse)
+                                        } catch {
+                                            seal.reject(error)
+                                        }
+            },
+                                      failure: { error in
+                                        seal.reject(error)
+            })
         }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        return request
     }
     
     static func photoUrl(for photo: Photo) -> String {
         return "https://farm\(photo.farmId).staticflickr.com/\(photo.serverId)/\(photo.id)_\(photo.secret)_b.jpg"
-    }
-    
-    static func getRecentPhotos(page: Int = 1) -> Promise<PhotosResponse> {
-        return firstly {
-            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getRecent,
-                                                                      params: ["page": "\(page)"]))
-                .validate()
-            }.map {
-                try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
-        }
-    }
-    
-    static func getPopularPhotos(page: Int = 1) -> Promise<PhotosResponse> {
-        return firstly {
-            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getPopular,
-                                                                      params: ["page": "\(page)"]))
-                .validate()
-            }.map {
-                try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
-        }
-    }
-    
-    static func searchPhotos(text: String, page: Int = 1) -> Promise<PhotosResponse> {
-        return firstly {
-            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .search,
-                                                                      params: ["text": text,
-                                                                               "page": "\(page)"]))
-                .validate()
-            }.map {
-                try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
-        }
     }
     
 }
