@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bHP-nr-WdY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bHP-nr-WdY">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,25 +18,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dc3-rL-8Mo">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXV-vM-qrV">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="rhC-Q4-rp3" appends="YES" id="o4h-oy-m2q"/>
-                                </connections>
-                            </imageView>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="375" placeholderIntrinsicHeight="734" translatesAutoresizingMaskIntoConstraints="NO" id="dc3-rL-8Mo">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="734"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="rhC-Q4-rp3" appends="YES" id="o4h-oy-m2q"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="dc3-rL-8Mo" firstAttribute="top" secondItem="AXV-vM-qrV" secondAttribute="top" id="9L7-8M-TZs"/>
+                                    <constraint firstAttribute="trailing" secondItem="dc3-rL-8Mo" secondAttribute="trailing" id="ST9-KJ-fz0"/>
+                                    <constraint firstItem="dc3-rL-8Mo" firstAttribute="leading" secondItem="AXV-vM-qrV" secondAttribute="leading" id="hlD-vU-h1x"/>
+                                    <constraint firstAttribute="bottom" secondItem="dc3-rL-8Mo" secondAttribute="bottom" id="qdr-tO-Wtw"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dc3-rL-8Mo" secondAttribute="trailing" id="8Wd-p7-nMp"/>
-                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="leading" secondItem="Kkg-lp-B09" secondAttribute="leading" id="R6u-wc-WNt"/>
-                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="top" secondItem="LJc-X2-IDp" secondAttribute="top" id="c5g-AC-Unm"/>
-                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="bottom" secondItem="LJc-X2-IDp" secondAttribute="bottom" id="oje-P2-amh"/>
+                            <constraint firstItem="AXV-vM-qrV" firstAttribute="trailing" secondItem="LJc-X2-IDp" secondAttribute="trailing" id="42h-BL-9oB"/>
+                            <constraint firstItem="AXV-vM-qrV" firstAttribute="top" secondItem="LJc-X2-IDp" secondAttribute="top" id="HU5-Gq-qqw"/>
+                            <constraint firstItem="AXV-vM-qrV" firstAttribute="leading" secondItem="LJc-X2-IDp" secondAttribute="leading" id="TmO-wf-exA"/>
+                            <constraint firstItem="AXV-vM-qrV" firstAttribute="bottom" secondItem="LJc-X2-IDp" secondAttribute="bottom" id="xWO-mP-wPS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LJc-X2-IDp"/>
                     </view>
                     <connections>
+                        <outlet property="imageViewBottomConstraint" destination="qdr-tO-Wtw" id="K78-pT-jtg"/>
+                        <outlet property="imageViewLeadingConstraint" destination="hlD-vU-h1x" id="MtF-hm-DQ8"/>
+                        <outlet property="imageViewTopConstraint" destination="9L7-8M-TZs" id="Xgz-65-VJr"/>
+                        <outlet property="imageViewTrailingConstraint" destination="ST9-KJ-fz0" id="exm-vx-UqO"/>
                         <outlet property="photoImageView" destination="dc3-rL-8Mo" id="Uhj-Ad-smN"/>
+                        <outlet property="scrollView" destination="AXV-vM-qrV" id="Vdb-5X-bMz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXY-CC-VcL" userLabel="First Responder" sceneMemberID="firstResponder"/>
