@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dc3-rL-8Mo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="rhC-Q4-rp3" appends="YES" id="o4h-oy-m2q"/>
@@ -28,10 +28,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dc3-rL-8Mo" secondAttribute="trailing" id="VgI-be-XOX"/>
-                            <constraint firstAttribute="bottom" secondItem="dc3-rL-8Mo" secondAttribute="bottom" id="d3Y-qe-xbv"/>
-                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="leading" secondItem="Kkg-lp-B09" secondAttribute="leading" id="qNj-tm-sad"/>
-                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="top" secondItem="Kkg-lp-B09" secondAttribute="top" id="xk0-ya-IiU"/>
+                            <constraint firstAttribute="trailing" secondItem="dc3-rL-8Mo" secondAttribute="trailing" id="8Wd-p7-nMp"/>
+                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="leading" secondItem="Kkg-lp-B09" secondAttribute="leading" id="R6u-wc-WNt"/>
+                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="top" secondItem="LJc-X2-IDp" secondAttribute="top" id="c5g-AC-Unm"/>
+                            <constraint firstItem="dc3-rL-8Mo" firstAttribute="bottom" secondItem="LJc-X2-IDp" secondAttribute="bottom" id="oje-P2-amh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LJc-X2-IDp"/>
                     </view>

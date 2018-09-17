@@ -28,6 +28,7 @@
 		D10A1BD2214F258400BB9D66 /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BD1214F258400BB9D66 /* UITableView.swift */; };
 		D10A1BD5214F2F4600BB9D66 /* SearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BD4214F2F4600BB9D66 /* SearchViewController.storyboard */; };
 		D10A1BD7214F2F6000BB9D66 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BD6214F2F6000BB9D66 /* SearchViewController.swift */; };
+		D10A1BDA214F4AF200BB9D66 /* ImagePreviewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BD9214F4AF200BB9D66 /* ImagePreviewAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D10A1BD1214F258400BB9D66 /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		D10A1BD4214F2F4600BB9D66 /* SearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchViewController.storyboard; sourceTree = "<group>"; };
 		D10A1BD6214F2F6000BB9D66 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		D10A1BD9214F4AF200BB9D66 /* ImagePreviewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePreviewAnimator.swift; sourceTree = "<group>"; };
 		DEC4B0F689EE8A4A5FDDACAD /* Pods-Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viewer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viewer/Pods-Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +180,7 @@
 				D10A1BB0214D50E400BB9D66 /* UIViewController.swift */,
 				D10A1BD1214F258400BB9D66 /* UITableView.swift */,
 				D10A1BC6214F1CBA00BB9D66 /* String.swift */,
+				D10A1BD9214F4AF200BB9D66 /* ImagePreviewAnimator.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D10A1BC1214E6C3900BB9D66 /* Photo.swift in Sources */,
+				D10A1BDA214F4AF200BB9D66 /* ImagePreviewAnimator.swift in Sources */,
 				D10A1BB4214D50E400BB9D66 /* AppDelegate.swift in Sources */,
 				D10A1BB6214D50E400BB9D66 /* GalleryViewController.swift in Sources */,
 				D10A1BBA214D515A00BB9D66 /* PhotoViewerViewController.swift in Sources */,

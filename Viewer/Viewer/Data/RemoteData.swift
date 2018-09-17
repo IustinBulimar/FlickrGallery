@@ -17,7 +17,8 @@ class RemoteData {
             "method": method.rawValue,
             "format": "json",
             "nojsoncallback": "1",
-            "sort": "relevance"
+            "sort": "relevance",
+            "content_type": "1"
         ]
         for (key, value) in params {
             defaultParams[key] = value
@@ -43,7 +44,7 @@ class RemoteData {
     }
     
     static func photoUrl(for photo: Photo) -> String {
-        return "https://farm\(photo.farmId).staticflickr.com/\(photo.serverId)/\(photo.id)_\(photo.secret).jpg"
+        return "https://farm\(photo.farmId).staticflickr.com/\(photo.serverId)/\(photo.id)_\(photo.secret)_b.jpg"
     }
     
     static func getRecentPhotos() -> Promise<PhotosResponse> {
@@ -59,9 +60,7 @@ class RemoteData {
         return firstly {
             URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getPopular))
                 .validate()
-            }.map {
-                print(String(data: $0.data, encoding: .utf8))
-                return try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
+            }.map {                return try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
         }
     }
     
@@ -71,8 +70,8 @@ class RemoteData {
                                                                       params: ["text": text]))
                 .validate()
             }.map {
-                print(String(data: $0.data, encoding: .utf8))
-                return try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
+                try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
+                
         }
     }
     
