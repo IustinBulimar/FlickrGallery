@@ -6,23 +6,28 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var photos: [Photo] = []
+    var page = 1
+    var pages = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.tableFooterView = UIView()
         tableView.register(cellClass: PhotoCell.self)
-        tableView.rowHeight = 250
+        tableView.rowHeight = 300
         tableView.dataSource = self
         tableView.delegate = self
         searchBar.delegate = self
         searchBar.becomeFirstResponder()
     }
     
-    func searchPhotos() {
-        RemoteData.searchPhotos(text: searchBar.text ?? "")
+    func getNextSearchPhotosPage() {
+        guard page <= pages else { return }
+        RemoteData.searchPhotos(text: searchBar.text ?? "", page: page)
             .done { photosResponse in
-                self.photos = photosResponse.info.photos
+                self.photos += photosResponse.info.photos
+                self.page = photosResponse.info.page + 1
+                self.pages = photosResponse.info.pages
                 self.tableView.reloadData()
             }.catch { error in
                 print(error)
@@ -60,13 +65,19 @@ extension SearchViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == photos.count {
+            getNextSearchPhotosPage()
+        }
+    }
+    
 }
 
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.endEditing(true)
-        searchPhotos()
+        getNextSearchPhotosPage()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

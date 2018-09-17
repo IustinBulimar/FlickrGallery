@@ -5,6 +5,8 @@ class GalleryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var photos: [Photo] = []
+    var page = 1
+    var pages = 1
     
     var animationAreaFrame: CGRect?
     var selectedIndexPath: IndexPath?
@@ -18,9 +20,16 @@ class GalleryViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        RemoteData.getRecentPhotos()
+        getNextPhotosPage()
+    }
+    
+    func getNextPhotosPage() {
+        guard page <= pages else { return }
+        RemoteData.getRecentPhotos(page: page)
             .done { photosResponse in
-                self.photos = photosResponse.info.photos
+                self.photos += photosResponse.info.photos
+                self.page = photosResponse.info.page + 1
+                self.pages = photosResponse.info.pages
                 self.tableView.reloadData()
             }.catch { error in
                 print(error)
@@ -58,6 +67,12 @@ extension GalleryViewController: UITableViewDelegate {
         selectedIndexPath = indexPath
         present(photoViewerViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == photos.count {
+            getNextPhotosPage()
+        }
     }
     
 }

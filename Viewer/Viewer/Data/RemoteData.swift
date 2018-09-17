@@ -18,7 +18,8 @@ class RemoteData {
             "format": "json",
             "nojsoncallback": "1",
             "sort": "relevance",
-            "content_type": "1"
+            "content_type": "1",
+            "per_page": "20"
         ]
         for (key, value) in params {
             defaultParams[key] = value
@@ -47,31 +48,34 @@ class RemoteData {
         return "https://farm\(photo.farmId).staticflickr.com/\(photo.serverId)/\(photo.id)_\(photo.secret)_b.jpg"
     }
     
-    static func getRecentPhotos() -> Promise<PhotosResponse> {
+    static func getRecentPhotos(page: Int = 1) -> Promise<PhotosResponse> {
         return firstly {
-            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getRecent))
+            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getRecent,
+                                                                      params: ["page": "\(page)"]))
                 .validate()
             }.map {
                 try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
         }
     }
     
-    static func getPopularPhotos() -> Promise<PhotosResponse> {
+    static func getPopularPhotos(page: Int = 1) -> Promise<PhotosResponse> {
         return firstly {
-            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getPopular))
+            URLSession.shared.dataTask(.promise, with: try urlRequest(for: .getPopular,
+                                                                      params: ["page": "\(page)"]))
                 .validate()
-            }.map {                return try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
+            }.map {
+                try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
         }
     }
     
-    static func searchPhotos(text: String) -> Promise<PhotosResponse> {
+    static func searchPhotos(text: String, page: Int = 1) -> Promise<PhotosResponse> {
         return firstly {
             URLSession.shared.dataTask(.promise, with: try urlRequest(for: .search,
-                                                                      params: ["text": text]))
+                                                                      params: ["text": text,
+                                                                               "page": "\(page)"]))
                 .validate()
             }.map {
                 try JSONDecoder().decode(PhotosResponse.self, from: $0.data)
-                
         }
     }
     
