@@ -3,6 +3,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
     
     var photos: [Photo] = []
@@ -68,6 +69,24 @@ extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == photos.count {
             getNextSearchPhotosPage()
+        }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let offset: CGFloat = scrollView.frame.height
+        let animationDuration = 0.6
+        if abs(velocity.y) > 1 {
+            if velocity.y > 0 {
+                UIView.animate(withDuration: animationDuration) {
+                    self.searchBarTopConstraint.constant = -1 * offset
+                    self.view.layoutIfNeeded()
+                }
+            } else {
+                UIView.animate(withDuration: animationDuration) {
+                    self.searchBarTopConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }
+            }
         }
     }
     
