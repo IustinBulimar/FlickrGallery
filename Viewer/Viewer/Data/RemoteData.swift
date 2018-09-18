@@ -26,6 +26,7 @@ class RemoteData {
                 "format": "json",
                 "nojsoncallback": "1",
                 "sort": "relevance",
+                "safe_search": "1",
                 "content_type": "1",
                 "per_page": "20"
             ]
@@ -101,7 +102,7 @@ class RemoteData {
     }
     
     static func photoUrl(for photo: Photo) -> String {
-        return "https://farm\(photo.farmId).staticflickr.com/\(photo.serverId)/\(photo.id)_\(photo.secret)_b.jpg"
+        return "https://farm\(photo.farmId).staticflickr.com/\(photo.serverId)/\(photo.id)_\(photo.secret).jpg"
     }
     
 }

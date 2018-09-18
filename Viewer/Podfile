@@ -7,6 +7,7 @@ target 'Viewer' do
     pod 'PromiseKit', '~> 6.4'
     pod 'OAuthSwift', '~> 1.2'
     pod 'KeychainSwift', '~> 11.0'
+    pod 'PBImageView'
     
 end
 

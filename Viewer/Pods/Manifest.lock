@@ -2,6 +2,7 @@ PODS:
   - KeychainSwift (11.0.0)
   - Kingfisher (4.6.1)
   - OAuthSwift (1.2.2)
+  - PBImageView (1.0.3)
   - PromiseKit (6.4.0):
     - PromiseKit/CorePromise (= 6.4.0)
     - PromiseKit/Foundation (= 6.4.0)
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - KeychainSwift (~> 11.0)
   - Kingfisher (~> 4.0)
   - OAuthSwift (~> 1.2)
+  - PBImageView
   - PromiseKit (~> 6.4)
 
 SPEC REPOS:
@@ -23,14 +25,16 @@ SPEC REPOS:
     - KeychainSwift
     - Kingfisher
     - OAuthSwift
+    - PBImageView
     - PromiseKit
 
 SPEC CHECKSUMS:
   KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
   Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
   OAuthSwift: 27b34fe80b76b67cd8f45571e0be2432bc9f6de1
+  PBImageView: 15d12320ce9b484808dee8caacc456c2dbef8a84
   PromiseKit: ae3616f45d7bb9bf4ff1e91abc9b7a8c48a340e0
 
-PODFILE CHECKSUM: edc150125f486c6016c8faf795a0e49597b57e2b
+PODFILE CHECKSUM: e3c70db6a78e59163be2f2a3305b69f54e3de441
 
 COCOAPODS: 1.5.0

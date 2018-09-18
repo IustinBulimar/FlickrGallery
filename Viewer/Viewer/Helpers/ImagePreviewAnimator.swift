@@ -1,4 +1,5 @@
 import UIKit
+import PBImageView
 
 let animationDuration = 0.2
 
@@ -11,7 +12,7 @@ class ImagePreviewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     var transitionImageViewEndFrame: CGRect
     
     var animationArea: UIView
-    var transitionImageView: UIImageView?
+    var transitionImageView: PBImageView?
     
     init(fromImageView: UIImageView, toImageView: UIImageView, animationAreaFrame: CGRect, fromImageViewRelativeFrame transitionImageViewStartFrame: CGRect, toImageViewRelativeFrame transitionImageViewEndFrame: CGRect) {
         
@@ -45,6 +46,7 @@ class ImagePreviewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                         fromView?.alpha = 0.5
                         toView?.alpha = 1
                         self.transitionImageView?.frame = self.transitionImageViewEndFrame
+                        self.transitionImageView?.contentMode = self.toImageView.contentMode
         },
                        completion: { completed in
                         if completed  {
@@ -70,7 +72,7 @@ class ImagePreviewAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         transitionImageViewStartFrame = animationArea.convert(transitionImageViewStartFrame, from: containerView)
         transitionImageViewEndFrame = animationArea.convert(transitionImageViewEndFrame, from: containerView)
         
-        transitionImageView = UIImageView(image: fromImageView.image)
+        transitionImageView = PBImageView(image: fromImageView.image)
         transitionImageView?.frame = transitionImageViewStartFrame
         transitionImageView?.contentMode = fromImageView.contentMode
         transitionImageView?.clipsToBounds = true
