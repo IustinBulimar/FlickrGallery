@@ -47,10 +47,12 @@ extension GalleryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let photo = photos[indexPath.row]
         let cell = tableView.dequeueReusableCell(ofType: PhotoCell.self, for: indexPath)
-        cell.titleLabel.text = photo.title
-        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!) { (image, error, cacheType, url) in
+        cell.startLoading()
+        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!, placeholder: #imageLiteral(resourceName: "placeholder")) { (image, error, cacheType, url) in
             if let error = error {
                 print(error)
+            } else {
+                cell.stopLoading()
             }
         }
         return cell

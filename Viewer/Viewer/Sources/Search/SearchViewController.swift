@@ -5,6 +5,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var photos: [Photo] = []
     var page = 1
@@ -15,6 +16,8 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
         
         tableView.tableFooterView = UIView()
         tableView.register(cellClass: PhotoCell.self)
@@ -26,9 +29,15 @@ class SearchViewController: UIViewController {
     }
     
     func getNextPhotosPage() {
+        if photos.count == 0 {
+            activityIndicator.startAnimating()
+            activityIndicator.isHidden = false
+        }
         guard page <= pages else { return }
         RemoteData.getPhotos(type: .search(page: page, text: searchBar.text ?? ""))
             .done { photosResponse in
+                self.activityIndicator.isHidden = true
+                self.activityIndicator.stopAnimating()
                 self.photos += photosResponse.info.photos
                 self.page = photosResponse.info.page + 1
                 self.pages = photosResponse.info.pages
@@ -49,10 +58,12 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let photo = photos[indexPath.row]
         let cell = tableView.dequeueReusableCell(ofType: PhotoCell.self, for: indexPath)
-        cell.titleLabel.text = photo.title
-        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!) { (image, error, cacheType, url) in
+        cell.startLoading()
+        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!, placeholder: #imageLiteral(resourceName: "placeholder")) { (image, error, cacheType, url) in
             if let error = error {
                 print(error)
+            } else {
+                cell.stopLoading()
             }
         }
         return cell

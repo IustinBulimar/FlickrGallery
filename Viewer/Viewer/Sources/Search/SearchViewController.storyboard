@@ -22,6 +22,11 @@
                                 <rect key="frame" x="0.0" y="100" width="375" height="629"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="m0Y-Mf-nco">
+                                <rect key="frame" x="169" y="388" width="37" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.92503255610000001" green="0.35752233859999999" blue="0.2465390563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7J7-47-DIg">
                                 <rect key="frame" x="0.0" y="44" width="375" height="56"/>
                                 <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,6 +50,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="m0Y-Mf-nco" id="cqp-BA-iU2"/>
                         <outlet property="searchBar" destination="7J7-47-DIg" id="2u5-3z-EgJ"/>
                         <outlet property="searchBarTopConstraint" destination="dOd-Vx-VPS" id="1yr-3b-RiO"/>
                         <outlet property="tableView" destination="64p-pg-cdA" id="Kzk-8t-wAh"/>
