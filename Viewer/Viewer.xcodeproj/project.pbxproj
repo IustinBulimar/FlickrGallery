@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1AB782272150FC8F00B749A0 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB782262150FC8F00B749A0 /* Colors.swift */; };
 		C7A69440C6207FA292EA93AD /* Pods_Viewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C689ED9525DFFB7951C49E8 /* Pods_Viewer.framework */; };
 		D10A1BB2214D50E400BB9D66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BA5214D50E400BB9D66 /* Images.xcassets */; };
 		D10A1BB3214D50E400BB9D66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BA8214D50E400BB9D66 /* LaunchScreen.storyboard */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1AB782262150FC8F00B749A0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5C689ED9525DFFB7951C49E8 /* Pods_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19AF9B9C4E44530C863FE06 /* Pods-Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Viewer/Pods-Viewer.release.xcconfig"; sourceTree = "<group>"; };
 		D10A1B4C214D4C2300BB9D66 /* Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,6 +183,7 @@
 				D10A1BD1214F258400BB9D66 /* UITableView.swift */,
 				D10A1BC6214F1CBA00BB9D66 /* String.swift */,
 				D10A1BD9214F4AF200BB9D66 /* ImagePreviewAnimator.swift */,
+				1AB782262150FC8F00B749A0 /* Colors.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				D10A1BC1214E6C3900BB9D66 /* Photo.swift in Sources */,
 				D10A1BDA214F4AF200BB9D66 /* ImagePreviewAnimator.swift in Sources */,
 				D10A1BB4214D50E400BB9D66 /* AppDelegate.swift in Sources */,
+				1AB782272150FC8F00B749A0 /* Colors.swift in Sources */,
 				D10A1BB6214D50E400BB9D66 /* GalleryViewController.swift in Sources */,
 				D10A1BBA214D515A00BB9D66 /* PhotoViewerViewController.swift in Sources */,
 				D10A1BBF214E60A400BB9D66 /* RemoteData.swift in Sources */,

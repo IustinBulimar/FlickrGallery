@@ -19,6 +19,8 @@ class GalleryViewController: UIViewController {
     var animationAreaFrame: CGRect?
     var selectedIndexPath: IndexPath?
     
+    var refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +30,16 @@ class GalleryViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        getNextPhotosPage()
+        
+        refreshControl.tintColor = .primaryColor
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh() {
+        page = 1
+        photos = []
         getNextPhotosPage()
     }
     
@@ -51,6 +63,7 @@ class GalleryViewController: UIViewController {
                 self.page = photosResponse.info.page + 1
                 self.pages = photosResponse.info.pages
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             }.catch { error in
                 print(error)
         }
