@@ -9,19 +9,32 @@ class PhotoViewerViewController: UIViewController {
     @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var favoriteButton: UIButton!
     
-    var imageUrl = ""
+    var photoUrl = ""
+    var photoId = ""
+    var isFavorite = false
     
-    static func storyboardInstance(url: String) -> PhotoViewerViewController {
+    static func storyboardInstance(url: String, id: String) -> PhotoViewerViewController {
         let vc = storyboardInstance()
-        vc.imageUrl = url
+        vc.photoUrl = url
+        vc.photoId = id
+        
+        RemoteData.isFavorite(photoId: id)
+            .done { isFavorite in
+                vc.isFavorite = isFavorite
+                vc.favoriteButton.setImage((isFavorite ? #imageLiteral(resourceName: "favorite-full") : #imageLiteral(resourceName: "favorite-empty")).withRenderingMode(.alwaysTemplate), for: .normal)
+            }.catch { error in
+                print(error)
+        }
+        
         return vc
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
-        photoImageView.kf.setImage(with: URL(string: imageUrl)!) { (image, error, cacheType, url) in
+        photoImageView.kf.setImage(with: URL(string: photoUrl)!) { (image, error, cacheType, url) in
             if let error = error {
                 print(error)
             }
@@ -30,6 +43,24 @@ class PhotoViewerViewController: UIViewController {
     
     @IBAction func didTapImageView(_ sender: Any) {
         dismiss(animated: true)
+    }
+    
+    @IBAction func didTapFavoriteButton(_ sender: Any) {
+        if isFavorite {
+            RemoteData.removeFromFavorites(photoId: photoId)
+                .done {
+                    self.favoriteButton.setImage(#imageLiteral(resourceName: "favorite-empty").withRenderingMode(.alwaysTemplate), for: .normal)
+                }.catch { error in
+                    print(error)
+            }
+        } else {
+            RemoteData.addToFavorites(photoId: photoId)
+                .done {
+                    self.favoriteButton.setImage(#imageLiteral(resourceName: "favorite-full").withRenderingMode(.alwaysTemplate), for: .normal)
+                }.catch { error in
+                    print(error)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {

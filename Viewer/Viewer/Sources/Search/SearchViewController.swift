@@ -75,7 +75,7 @@ extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        let photoViewerViewController = PhotoViewerViewController.storyboardInstance(url: photo.url)
+        let photoViewerViewController = PhotoViewerViewController.storyboardInstance(url: photo.url, id: photo.id)
         photoViewerViewController.transitioningDelegate = self
         selectedIndexPath = indexPath
         present(photoViewerViewController, animated: true)

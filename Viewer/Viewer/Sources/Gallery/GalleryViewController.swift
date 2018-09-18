@@ -4,6 +4,14 @@ class GalleryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var photosType: RemoteData.PhotosType = .recent(page: 1)
+    
+    static func storyboardInstance(photosType: RemoteData.PhotosType) -> GalleryViewController {
+        let vc = storyboardInstance()
+        vc.photosType = photosType
+        return vc
+    }
+    
     var photos: [Photo] = []
     var page = 1
     var pages = 1
@@ -25,7 +33,19 @@ class GalleryViewController: UIViewController {
     
     func getNextPhotosPage() {
         guard page <= pages else { return }
-        RemoteData.getPhotos(type: .recent(page: page))
+        
+        var type: RemoteData.PhotosType!
+        switch photosType {
+        case .recent:
+            type = .recent(page: page)
+        case .favorites:
+            type = .favorites(page: page)
+        default:
+            break
+
+        }
+        
+        RemoteData.getPhotos(type: type)
             .done { photosResponse in
                 self.photos += photosResponse.info.photos
                 self.page = photosResponse.info.page + 1
@@ -64,7 +84,7 @@ extension GalleryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        let photoViewerViewController = PhotoViewerViewController.storyboardInstance(url: photo.url)
+        let photoViewerViewController = PhotoViewerViewController.storyboardInstance(url: photo.url, id: photo.id)
         photoViewerViewController.transitioningDelegate = self
         selectedIndexPath = indexPath
         present(photoViewerViewController, animated: true)

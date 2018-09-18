@@ -19,17 +19,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ikd-gv-qqc">
-                        <rect key="frame" x="0.0" y="0.0" width="404" height="206"/>
+                        <rect key="frame" x="0.0" y="4" width="404" height="198"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </imageView>
                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A9H-tD-97A">
-                        <rect key="frame" x="0.0" y="0.0" width="404" height="206"/>
+                        <rect key="frame" x="0.0" y="4" width="404" height="198"/>
                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KpW-W6-GD2">
-                            <rect key="frame" x="0.0" y="0.0" width="404" height="206"/>
+                            <rect key="frame" x="0.0" y="0.0" width="404" height="198"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="RjB-xW-GHR">
-                                    <rect key="frame" x="184" y="85" width="37" height="37"/>
+                                    <rect key="frame" x="184" y="80" width="37" height="37"/>
                                     <color key="color" red="0.92503255610000001" green="0.35752233859999999" blue="0.2465390563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -45,11 +45,11 @@
                 <constraints>
                     <constraint firstItem="ikd-gv-qqc" firstAttribute="leading" secondItem="Nkg-Dx-QdW" secondAttribute="leading" id="6aW-RX-tRx"/>
                     <constraint firstAttribute="trailing" secondItem="ikd-gv-qqc" secondAttribute="trailing" id="T4y-fm-Y5a"/>
-                    <constraint firstItem="ikd-gv-qqc" firstAttribute="top" secondItem="Nkg-Dx-QdW" secondAttribute="top" id="Ybw-eC-XJO"/>
-                    <constraint firstAttribute="bottom" secondItem="ikd-gv-qqc" secondAttribute="bottom" id="bR4-pp-wgz"/>
+                    <constraint firstItem="ikd-gv-qqc" firstAttribute="top" secondItem="Nkg-Dx-QdW" secondAttribute="top" constant="4" id="Ybw-eC-XJO"/>
+                    <constraint firstAttribute="bottom" secondItem="ikd-gv-qqc" secondAttribute="bottom" constant="4" id="bR4-pp-wgz"/>
                     <constraint firstItem="A9H-tD-97A" firstAttribute="leading" secondItem="Nkg-Dx-QdW" secondAttribute="leading" id="bYU-Bz-DSs"/>
-                    <constraint firstAttribute="bottom" secondItem="A9H-tD-97A" secondAttribute="bottom" id="fnd-AP-Unl"/>
-                    <constraint firstItem="A9H-tD-97A" firstAttribute="top" secondItem="Nkg-Dx-QdW" secondAttribute="top" id="gs9-bP-8Cu"/>
+                    <constraint firstAttribute="bottom" secondItem="A9H-tD-97A" secondAttribute="bottom" constant="4" id="fnd-AP-Unl"/>
+                    <constraint firstItem="A9H-tD-97A" firstAttribute="top" secondItem="Nkg-Dx-QdW" secondAttribute="top" constant="4" id="gs9-bP-8Cu"/>
                     <constraint firstAttribute="trailing" secondItem="A9H-tD-97A" secondAttribute="trailing" id="sPV-qq-mU0"/>
                 </constraints>
             </tableViewCellContentView>

@@ -36,17 +36,32 @@
                                     <constraint firstAttribute="bottom" secondItem="dc3-rL-8Mo" secondAttribute="bottom" id="qdr-tO-Wtw"/>
                                 </constraints>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2M-El-2MZ">
+                                <rect key="frame" x="325" y="60" width="34" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="3q4-bG-OAq"/>
+                                    <constraint firstAttribute="height" constant="34" id="U6I-cx-hup"/>
+                                </constraints>
+                                <color key="tintColor" red="0.92503255610000001" green="0.35752233859999999" blue="0.2465390563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="favorite-empty"/>
+                                <connections>
+                                    <action selector="didTapFavoriteButton:" destination="bHP-nr-WdY" eventType="touchUpInside" id="HbT-xz-Ea3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AXV-vM-qrV" firstAttribute="trailing" secondItem="LJc-X2-IDp" secondAttribute="trailing" id="42h-BL-9oB"/>
                             <constraint firstItem="AXV-vM-qrV" firstAttribute="top" secondItem="LJc-X2-IDp" secondAttribute="top" id="HU5-Gq-qqw"/>
                             <constraint firstItem="AXV-vM-qrV" firstAttribute="leading" secondItem="LJc-X2-IDp" secondAttribute="leading" id="TmO-wf-exA"/>
+                            <constraint firstItem="LJc-X2-IDp" firstAttribute="trailing" secondItem="a2M-El-2MZ" secondAttribute="trailing" constant="16" id="cTg-SM-3e7"/>
+                            <constraint firstItem="a2M-El-2MZ" firstAttribute="top" secondItem="LJc-X2-IDp" secondAttribute="top" constant="16" id="mfx-4h-rgg"/>
                             <constraint firstItem="AXV-vM-qrV" firstAttribute="bottom" secondItem="LJc-X2-IDp" secondAttribute="bottom" id="xWO-mP-wPS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LJc-X2-IDp"/>
                     </view>
                     <connections>
+                        <outlet property="favoriteButton" destination="a2M-El-2MZ" id="21S-U8-BHA"/>
                         <outlet property="imageViewBottomConstraint" destination="qdr-tO-Wtw" id="K78-pT-jtg"/>
                         <outlet property="imageViewLeadingConstraint" destination="hlD-vU-h1x" id="MtF-hm-DQ8"/>
                         <outlet property="imageViewTopConstraint" destination="9L7-8M-TZs" id="Xgz-65-VJr"/>
@@ -65,4 +80,7 @@
             <point key="canvasLocation" x="192.80000000000001" y="138.91625615763547"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="favorite-empty" width="50" height="50"/>
+    </resources>
 </document>
