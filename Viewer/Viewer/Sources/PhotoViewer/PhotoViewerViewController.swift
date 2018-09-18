@@ -19,21 +19,21 @@ class PhotoViewerViewController: UIViewController {
         let vc = storyboardInstance()
         vc.photoUrl = url
         vc.photoId = id
-        
         RemoteData.isFavorite(photoId: id)
             .done { isFavorite in
                 vc.isFavorite = isFavorite
                 vc.favoriteButton.setImage((isFavorite ? #imageLiteral(resourceName: "favorite-full") : #imageLiteral(resourceName: "favorite-empty")).withRenderingMode(.alwaysTemplate), for: .normal)
+                vc.favoriteButton.isHidden = false
             }.catch { error in
                 print(error)
         }
-        
         return vc
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollView.delegate = self
+        favoriteButton.isHidden = RemoteData.isAuthenticated
         photoImageView.kf.setImage(with: URL(string: photoUrl)!) { (image, error, cacheType, url) in
             if let error = error {
                 print(error)

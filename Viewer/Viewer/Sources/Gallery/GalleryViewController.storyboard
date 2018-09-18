@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,22 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uV3-fQ-u2j">
+                                <rect key="frame" x="0.0" y="44" width="375" height="56"/>
+                                <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i0E-hu-GoW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="629"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="58p-HY-3NT">
+                                <rect key="frame" x="169" y="368" width="37" height="37"/>
+                                <color key="color" red="0.92503255610000001" green="0.35752233859999999" blue="0.2465390563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="i0E-hu-GoW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5iT-bT-eFK"/>
-                            <constraint firstItem="i0E-hu-GoW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9De-lF-D32"/>
                             <constraint firstItem="i0E-hu-GoW" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="IIw-uZ-viN"/>
                             <constraint firstAttribute="trailing" secondItem="i0E-hu-GoW" secondAttribute="trailing" id="KaT-UI-ukE"/>
+                            <constraint firstItem="uV3-fQ-u2j" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QY7-jE-DId"/>
+                            <constraint firstItem="uV3-fQ-u2j" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Zx2-fl-qFz"/>
+                            <constraint firstItem="i0E-hu-GoW" firstAttribute="top" secondItem="uV3-fQ-u2j" secondAttribute="bottom" id="lzN-LL-yKm"/>
+                            <constraint firstItem="58p-HY-3NT" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="sSs-ds-wpD"/>
+                            <constraint firstItem="58p-HY-3NT" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="tG0-7T-bXM"/>
+                            <constraint firstItem="uV3-fQ-u2j" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="y0P-uA-kMd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="58p-HY-3NT" id="iJz-He-TLD"/>
+                        <outlet property="searchBar" destination="uV3-fQ-u2j" id="P8b-R8-IEt"/>
+                        <outlet property="searchBarTopConstraint" destination="y0P-uA-kMd" id="t8c-gA-bKH"/>
                         <outlet property="tableView" destination="i0E-hu-GoW" id="o1C-QZ-CR2"/>
                     </connections>
                 </viewController>

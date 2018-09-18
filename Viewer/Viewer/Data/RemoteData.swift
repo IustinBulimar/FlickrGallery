@@ -53,10 +53,57 @@ class RemoteData {
     private static let apiKey = "02e944b562f4779e04132e9007f789f3"
     private static let apiSecret = "3f869ed599da8ad8"
     
-    private static var oauth: OAuth1Swift!
+    private static var oauth: OAuth1Swift = OAuth1Swift(
+        consumerKey: apiKey,
+        consumerSecret: apiSecret,
+        requestTokenUrl: "https://www.flickr.com/services/oauth/request_token",
+        authorizeUrl: "https://www.flickr.com/services/oauth/authorize",
+        accessTokenUrl: "https://www.flickr.com/services/oauth/access_token"
+    )
+    
+    static var isAuthenticated: Bool {
+        let keychain = KeychainSwift()
+        return keychain.get("oauthToken") != nil && keychain.get("oauthTokenSecret") != nil
+    }
+    
+    static func restoreAuthentication() -> Promise<Void> {
+        return Promise { seal in
+            let keychain = KeychainSwift()
+            if let oauthToken = keychain.get("oauthToken"),
+                let oauthTokenSecret = keychain.get("oauthTokenSecret") {
+                oauth.client.credential.oauthToken = oauthToken
+                oauth.client.credential.oauthTokenSecret = oauthTokenSecret
+                seal.fulfill(())
+            }
+            seal.reject("Please sign in")
+        }
+    }
     
     static func authenticate(viewController: UIViewController) -> Promise<Void> {
         return Promise { seal in
+            let handler = SafariURLHandler(viewController: viewController, oauthSwift: self.oauth)
+            handler.factory = { url in
+                let controller = SFSafariViewController(url: url)
+                return controller
+            }
+            oauth.authorizeURLHandler = handler
+            let _ = oauth.authorize(withCallbackURL: URL(string: "Viewer://oauth-callback/flickr")!,
+                                    success: { credential, response, parameters in
+                                        let keychain = KeychainSwift()
+                                        keychain.set(oauth.client.credential.oauthToken, forKey: "oauthToken")
+                                        keychain.set(oauth.client.credential.oauthTokenSecret, forKey: "oauthTokenSecret")
+                                        seal.fulfill(())
+            },
+                                    failure: { error in
+                                        seal.reject(error)
+            })
+        }
+    }
+    
+    static func signOut() -> Promise<Void> {
+        return Promise { seal in
+            let keychain = KeychainSwift()
+            keychain.clear()
             oauth = OAuth1Swift(
                 consumerKey: apiKey,
                 consumerSecret: apiSecret,
@@ -64,33 +111,10 @@ class RemoteData {
                 authorizeUrl: "https://www.flickr.com/services/oauth/authorize",
                 accessTokenUrl: "https://www.flickr.com/services/oauth/access_token"
             )
-            
-            let keychain = KeychainSwift()
-            if let oauthToken = keychain.get("oauthToken"),
-                let oauthTokenSecret = keychain.get("oauthTokenSecret") {
-                oauth.client.credential.oauthToken = oauthToken
-                oauth.client.credential.oauthTokenSecret = oauthTokenSecret
-                seal.fulfill(())
-            } else {
-                let handler = SafariURLHandler(viewController: viewController, oauthSwift: self.oauth!)
-                handler.factory = { url in
-                    let controller = SFSafariViewController(url: url)
-                    return controller
-                }
-                oauth.authorizeURLHandler = handler
-                let _ = oauth.authorize(withCallbackURL: URL(string: "Viewer://oauth-callback/flickr")!,
-                                        success: { credential, response, parameters in
-                                            let keychain = KeychainSwift()
-                                            keychain.set(oauth.client.credential.oauthToken, forKey: "oauthToken")
-                                            keychain.set(oauth.client.credential.oauthTokenSecret, forKey: "oauthTokenSecret")
-                                            seal.fulfill(())
-                },
-                                        failure: { error in
-                                            seal.reject(error)
-                })
-            }
+            seal.fulfill(())
         }
     }
+    
     
     static func getPhotos(type: PhotosType) -> Promise<PhotosResponse> {
         return Promise { seal in
@@ -98,8 +122,14 @@ class RemoteData {
                                       parameters: type.params,
                                       success: { response in
                                         do {
-                                            let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: response.data)
-                                            seal.fulfill(photosResponse)
+                                            let response = try response.jsonObject()
+                                            if let json = response as? [String: Any],
+                                                let photos = json["photos"] as? [String: Any] {
+                                                
+                                                let data = try JSONSerialization.data(withJSONObject: photos, options: [])
+                                                let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: data)
+                                                seal.fulfill(photosResponse)
+                                            }
                                         } catch {
                                             seal.reject(error)
                                         }

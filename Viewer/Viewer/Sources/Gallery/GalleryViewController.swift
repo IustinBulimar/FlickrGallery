@@ -2,9 +2,22 @@ import UIKit
 
 class GalleryViewController: UIViewController {
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBarTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var photosType: RemoteData.PhotosType = .recent(page: 1)
+    
+    var photos: [Photo] = []
+    var pages = 1
+    var nextPage = 1
+    
+    var animationAreaFrame: CGRect?
+    var selectedIndexPath: IndexPath?
+    
+    var refreshControl = UIRefreshControl()
+    
     
     static func storyboardInstance(photosType: RemoteData.PhotosType) -> GalleryViewController {
         let vc = storyboardInstance()
@@ -12,17 +25,9 @@ class GalleryViewController: UIViewController {
         return vc
     }
     
-    var photos: [Photo] = []
-    var page = 1
-    var pages = 1
-    
-    var animationAreaFrame: CGRect?
-    var selectedIndexPath: IndexPath?
-    
-    var refreshControl = UIRefreshControl()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideLoading()
         
         tableView.tableFooterView = UIView()
         tableView.register(cellClass: PhotoCell.self)
@@ -30,43 +35,81 @@ class GalleryViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        getNextPhotosPage()
-        
-        refreshControl.tintColor = .primaryColor
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableView.refreshControl = refreshControl
+        if case .search = photosType {
+            searchBar.delegate = self
+            searchBar.becomeFirstResponder()
+        } else {
+            let offset: CGFloat = searchBar.frame.height + UIApplication.shared.statusBarFrame.height
+            searchBarTopConstraint.constant = -1 * offset
+            
+            refreshControl.tintColor = .primaryColor
+            refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+            tableView.refreshControl = refreshControl
+            
+            getNextPhotosPage()
+        }
     }
     
     @objc func refresh() {
-        page = 1
-        photos = []
-        getNextPhotosPage()
+        getNextPhotosPage(reset: true)
     }
     
-    func getNextPhotosPage() {
-        guard page <= pages else { return }
+    func getNextPhotosPage(reset: Bool = true) {
+        if case .favorites = photosType, !RemoteData.isAuthenticated {
+            refreshControl.endRefreshing()
+            return
+        }
+        var showLoading = false
+        if reset {
+            pages = 1
+            nextPage = 1
+            showLoading = photos.isEmpty
+            photos = []
+        }
+        guard nextPage <= pages else { return }
+        
+        if showLoading {
+            self.showLoading()
+        }
         
         var type: RemoteData.PhotosType!
         switch photosType {
         case .recent:
-            type = .recent(page: page)
+            type = .recent(page: nextPage)
         case .favorites:
-            type = .favorites(page: page)
+            type = .favorites(page: nextPage)
+        case .search:
+            type = .search(page: nextPage, text: searchBar.text ?? "")
         default:
             break
-
         }
-        
+        getPhotos(type: type)
+    }
+    
+    func getPhotos(type: RemoteData.PhotosType) {
         RemoteData.getPhotos(type: type)
             .done { photosResponse in
-                self.photos += photosResponse.info.photos
-                self.page = photosResponse.info.page + 1
-                self.pages = photosResponse.info.pages
-                self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
+                self.hideLoading()
+                self.photos += photosResponse.photos
+                self.pages = photosResponse.pages
+                self.nextPage = photosResponse.page + 1
+                self.tableView.reloadData()
             }.catch { error in
+                self.refreshControl.endRefreshing()
+                self.hideLoading()
                 print(error)
         }
+    }
+    
+    func showLoading() {
+        activityIndicator.startAnimating()
+        activityIndicator.isHidden = false
+    }
+    
+    func hideLoading() {
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
     }
     
 }
@@ -81,7 +124,7 @@ extension GalleryViewController: UITableViewDataSource {
         let photo = photos[indexPath.row]
         let cell = tableView.dequeueReusableCell(ofType: PhotoCell.self, for: indexPath)
         cell.startLoading()
-        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!, placeholder: #imageLiteral(resourceName: "placeholder")) { (image, error, cacheType, url) in
+        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!, placeholder: #imageLiteral(resourceName: "placeholder")) { image, error, cacheType, url in
             if let error = error {
                 print(error)
             } else {
@@ -106,8 +149,41 @@ extension GalleryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == photos.count {
-            getNextPhotosPage()
+            getNextPhotosPage(reset: false)
         }
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        guard case .search = photosType else { return }
+        
+        let offset: CGFloat = searchBar.frame.height + UIApplication.shared.statusBarFrame.height
+        let animationDuration = 0.2
+        if abs(velocity.y) > 1 {
+            if velocity.y > 0 {
+                UIView.animate(withDuration: animationDuration) {
+                    self.searchBarTopConstraint.constant = -1 * offset
+                    self.view.layoutIfNeeded()
+                }
+            } else {
+                UIView.animate(withDuration: animationDuration) {
+                    self.searchBarTopConstraint.constant = 0
+                    self.view.layoutIfNeeded()
+                }
+            }
+        }
+    }
+    
+}
+
+extension GalleryViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
+        getNextPhotosPage(reset: true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        view.endEditing(true)
     }
     
 }
