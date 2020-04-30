@@ -1,6 +1,6 @@
 platform :ios, '11.2'
 
-target 'Viewer' do
+target 'FlickrGallery' do
     use_frameworks!
     
     pod 'Kingfisher', '~> 5.13'

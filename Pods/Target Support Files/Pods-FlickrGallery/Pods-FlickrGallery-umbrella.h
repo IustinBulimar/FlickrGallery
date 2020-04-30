@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_ViewerVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_ViewerVersionString[];
+FOUNDATION_EXPORT double Pods_FlickrGalleryVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_FlickrGalleryVersionString[];
 
