@@ -3,11 +3,11 @@ platform :ios, '11.2'
 target 'Viewer' do
     use_frameworks!
     
-    pod 'Kingfisher', '~> 4.0'
-    pod 'PromiseKit', '~> 6.4'
-    pod 'OAuthSwift', '~> 1.2'
-    pod 'KeychainSwift', '~> 11.0'
-    pod 'PBImageView'
+    pod 'Kingfisher', '~> 5.13'
+    pod 'PromiseKit', '~> 6.13'
+    pod 'OAuthSwift', '~> 2.1'
+    pod 'KeychainSwift', '~> 19.0'
+    pod 'PBImageView', '~> 1.0'
     
 end
 

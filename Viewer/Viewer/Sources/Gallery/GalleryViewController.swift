@@ -124,11 +124,13 @@ extension GalleryViewController: UITableViewDataSource {
         let photo = photos[indexPath.row]
         let cell = tableView.dequeueReusableCell(ofType: PhotoCell.self, for: indexPath)
         cell.startLoading()
-        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!, placeholder: #imageLiteral(resourceName: "placeholder")) { image, error, cacheType, url in
-            if let error = error {
-                print(error)
-            } else {
+        cell.photoImageView.kf.setImage(with: URL(string: photo.url)!, placeholder: #imageLiteral(resourceName: "placeholder")) { result in
+            switch result {
+            case .success(_):
                 cell.stopLoading()
+                
+            case .failure(let error):
+                print(error)
             }
         }
         return cell
@@ -140,8 +142,10 @@ extension GalleryViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        let photoViewerViewController = PhotoViewerViewController.storyboardInstance(url: photo.url, id: photo.id)
+        let photoViewerViewController = PhotoViewerViewController.storyboardInstance(url: photo.url,
+                                                                                     id: photo.id)
         photoViewerViewController.transitioningDelegate = self
+        photoViewerViewController.modalPresentationStyle = .fullScreen
         selectedIndexPath = indexPath
         present(photoViewerViewController, animated: true)
         tableView.deselectRow(at: indexPath, animated: false)

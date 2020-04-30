@@ -5,11 +5,10 @@ class HomeViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        RemoteData.restoreAuthentication()
-            .done {
-                print("Was signed in")
+        RemoteData.restoreAuthentication().done {
+            print("Was signed in")
         }.catch { error in
-                print(error)
+            print(error)
         }
         
         let popularViewController = GalleryViewController.storyboardInstance(photosType: .recent(page: 1))

@@ -17,7 +17,6 @@
 		D10A1BB5214D50E400BB9D66 /* GalleryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BAD214D50E400BB9D66 /* GalleryViewController.storyboard */; };
 		D10A1BB6214D50E400BB9D66 /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BAE214D50E400BB9D66 /* GalleryViewController.swift */; };
 		D10A1BB7214D50E400BB9D66 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BB0214D50E400BB9D66 /* UIViewController.swift */; };
-		D10A1BB8214D50E400BB9D66 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BB1214D50E400BB9D66 /* Info.plist */; };
 		D10A1BBA214D515A00BB9D66 /* PhotoViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BB9214D515A00BB9D66 /* PhotoViewerViewController.swift */; };
 		D10A1BBC214D518E00BB9D66 /* PhotoViewerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10A1BBB214D518E00BB9D66 /* PhotoViewerViewController.storyboard */; };
 		D10A1BBF214E60A400BB9D66 /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10A1BBE214E60A400BB9D66 /* RemoteData.swift */; };
@@ -255,7 +254,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Iustin Bulimar";
 				TargetAttributes = {
 					D10A1B4B214D4C2300BB9D66 = {
@@ -288,7 +287,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D10A1BBC214D518E00BB9D66 /* PhotoViewerViewController.storyboard in Resources */,
-				D10A1BB8214D50E400BB9D66 /* Info.plist in Resources */,
 				D10A1BCA214F1F8500BB9D66 /* HomeViewController.storyboard in Resources */,
 				D10A1BB2214D50E400BB9D66 /* Images.xcassets in Resources */,
 				D10A1BB5214D50E400BB9D66 /* GalleryViewController.storyboard in Resources */,
@@ -325,7 +323,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Viewer/Pods-Viewer-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Viewer/Pods-Viewer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/OAuthSwift/OAuthSwift.framework",
@@ -342,7 +340,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Viewer/Pods-Viewer-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Viewer/Pods-Viewer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -386,6 +384,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -393,6 +392,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -443,6 +443,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -450,6 +451,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

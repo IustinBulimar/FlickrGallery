@@ -87,16 +87,18 @@ class RemoteData {
                 return controller
             }
             oauth.authorizeURLHandler = handler
-            let _ = oauth.authorize(withCallbackURL: URL(string: "Viewer://oauth-callback/flickr")!,
-                                    success: { credential, response, parameters in
-                                        let keychain = KeychainSwift()
-                                        keychain.set(oauth.client.credential.oauthToken, forKey: "oauthToken")
-                                        keychain.set(oauth.client.credential.oauthTokenSecret, forKey: "oauthTokenSecret")
-                                        seal.fulfill(())
-            },
-                                    failure: { error in
-                                        seal.reject(error)
-            })
+            let _ = oauth.authorize(withCallbackURL: URL(string: "Viewer://oauth-callback/flickr")!) { result in
+                switch result {
+                case .success(_):
+                    let keychain = KeychainSwift()
+                    keychain.set(oauth.client.credential.oauthToken, forKey: "oauthToken")
+                    keychain.set(oauth.client.credential.oauthTokenSecret, forKey: "oauthTokenSecret")
+                    seal.fulfill(())
+                    
+                case .failure(let error):
+                    seal.reject(error)
+                }
+            }
         }
     }
     
@@ -119,24 +121,26 @@ class RemoteData {
     static func getPhotos(type: PhotosType) -> Promise<PhotosResponse> {
         return Promise { seal in
             _ = self.oauth.client.get("https://api.flickr.com/services/rest",
-                                      parameters: type.params,
-                                      success: { response in
-                                        do {
-                                            let response = try response.jsonObject()
-                                            if let json = response as? [String: Any],
-                                                let photos = json["photos"] as? [String: Any] {
-                                                
-                                                let data = try JSONSerialization.data(withJSONObject: photos, options: [])
-                                                let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: data)
-                                                seal.fulfill(photosResponse)
+                                      parameters: type.params) { result in
+                                        switch result {
+                                        case .success(let response):
+                                            do {
+                                                let response = try response.jsonObject()
+                                                if let json = response as? [String: Any],
+                                                    let photos = json["photos"] as? [String: Any] {
+                                                    
+                                                    let data = try JSONSerialization.data(withJSONObject: photos, options: [])
+                                                    let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: data)
+                                                    seal.fulfill(photosResponse)
+                                                }
+                                            } catch {
+                                                seal.reject(error)
                                             }
-                                        } catch {
+                                            
+                                        case .failure(let error):
                                             seal.reject(error)
                                         }
-            },
-                                      failure: { error in
-                                        seal.reject(error)
-            })
+            }
         }
     }
     
@@ -152,45 +156,59 @@ class RemoteData {
                                                     "method": "flickr.photos.getInfo",
                                                     "format": "json",
                                                     "nojsoncallback": "1"
-                ],
-                                      success: { response in
-                                        if let response = try? response.jsonObject(),
-                                            let json = response as? [String: Any],
-                                            let photo = json["photo"] as? [String: Any],
-                                            let isFavorite = photo["isfavorite"] as? Int {
-                                            seal.fulfill(isFavorite == 1)
-                                        }
-                                        seal.fulfill(false)
-            },
-                                      failure: { error in
-                                        seal.reject(error)
-            })
+            ]) { result in
+                switch result {
+                case .success(let response):
+                    if let response = try? response.jsonObject(),
+                        let json = response as? [String: Any],
+                        let photo = json["photo"] as? [String: Any],
+                        let isFavorite = photo["isfavorite"] as? Int {
+                        seal.fulfill(isFavorite == 1)
+                    }
+                    seal.fulfill(false)
+                    
+                case .failure(let error):
+                    seal.reject(error)
+                }
+            }
         }
     }
     
     static func addToFavorites(photoId: String) -> Promise<Void> {
         return Promise { seal in
             _ = self.oauth.client.get("https://api.flickr.com/services/rest",
-                                      parameters: [ "api_key": apiKey, "photo_id": photoId, "method": "flickr.favorites.add"],
-                                      success: { response in
-                                       seal.fulfill(())
-            },
-                                      failure: { error in
-                                        seal.reject(error)
-            })
+                                      parameters: [ "api_key": apiKey,
+                                                    "photo_id": photoId,
+                                                    "method": "flickr.favorites.add"
+            ]) { result in
+                switch result {
+                case .success(_):
+                    seal.fulfill(())
+                    
+                case .failure(let error):
+                    seal.reject(error)
+                }
+            }
         }
     }
     
     static func removeFromFavorites(photoId: String) -> Promise<Void> {
         return Promise { seal in
             _ = self.oauth.client.get("https://api.flickr.com/services/rest",
-                                      parameters: [ "api_key": apiKey, "photo_id": photoId, "method": "flickr.favorites.remove"],
-                                      success: { response in
-                                        seal.fulfill(())
-            },
-                                      failure: { error in
-                                        seal.reject(error)
-            })
+                                      parameters: [
+                                        "api_key": apiKey,
+                                        "photo_id":
+                                        photoId, "method":
+                                        "flickr.favorites.remove"
+            ]) { result in
+                switch result {
+                case .success(_):
+                    seal.fulfill(())
+                    
+                case .failure(let error):
+                    seal.reject(error)
+                }
+            }
         }
     }
     

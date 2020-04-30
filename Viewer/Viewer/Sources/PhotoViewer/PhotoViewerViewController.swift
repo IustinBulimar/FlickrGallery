@@ -34,8 +34,12 @@ class PhotoViewerViewController: UIViewController {
         super.viewDidLoad()
         scrollView.delegate = self
         favoriteButton.isHidden = RemoteData.isAuthenticated
-        photoImageView.kf.setImage(with: URL(string: photoUrl)!) { (image, error, cacheType, url) in
-            if let error = error {
+        photoImageView.kf.setImage(with: URL(string: photoUrl)!) { result in
+            switch result {
+            case .success(_):
+                break
+                
+            case .failure(let error):
                 print(error)
             }
         }
