@@ -37,7 +37,7 @@
 		1AB782262150FC8F00B749A0 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		5C689ED9525DFFB7951C49E8 /* Pods_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19AF9B9C4E44530C863FE06 /* Pods-Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viewer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Viewer/Pods-Viewer.release.xcconfig"; sourceTree = "<group>"; };
-		D10A1B4C214D4C2300BB9D66 /* Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Viewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D10A1B4C214D4C2300BB9D66 /* FlickrGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10A1BA5214D50E400BB9D66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D10A1BA8214D50E400BB9D66 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D10A1BAB214D50E400BB9D66 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		D10A1B43214D4C2300BB9D66 = {
 			isa = PBXGroup;
 			children = (
-				D10A1BA3214D50E400BB9D66 /* Viewer */,
+				D10A1BA3214D50E400BB9D66 /* FlickrGallery */,
 				D10A1B4D214D4C2300BB9D66 /* Products */,
 				37532E1943EFAFCF6A74774D /* Pods */,
 				D0DC2B2ACB9D5DA1ED2DFBF8 /* Frameworks */,
@@ -111,12 +111,12 @@
 		D10A1B4D214D4C2300BB9D66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D10A1B4C214D4C2300BB9D66 /* Viewer.app */,
+				D10A1B4C214D4C2300BB9D66 /* FlickrGallery.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D10A1BA3214D50E400BB9D66 /* Viewer */ = {
+		D10A1BA3214D50E400BB9D66 /* FlickrGallery */ = {
 			isa = PBXGroup;
 			children = (
 				D10A1BA4214D50E400BB9D66 /* Resources */,
@@ -124,7 +124,7 @@
 				D10A1BAF214D50E400BB9D66 /* Helpers */,
 				D10A1BB1214D50E400BB9D66 /* Info.plist */,
 			);
-			path = Viewer;
+			path = FlickrGallery;
 			sourceTree = "<group>";
 		};
 		D10A1BA4214D50E400BB9D66 /* Resources */ = {
@@ -228,9 +228,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D10A1B4B214D4C2300BB9D66 /* Viewer */ = {
+		D10A1B4B214D4C2300BB9D66 /* FlickrGallery */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D10A1B5E214D4C2300BB9D66 /* Build configuration list for PBXNativeTarget "Viewer" */;
+			buildConfigurationList = D10A1B5E214D4C2300BB9D66 /* Build configuration list for PBXNativeTarget "FlickrGallery" */;
 			buildPhases = (
 				747FBA5B3472ADCB282A8DE0 /* [CP] Check Pods Manifest.lock */,
 				D10A1B48214D4C2300BB9D66 /* Sources */,
@@ -242,9 +242,9 @@
 			);
 			dependencies = (
 			);
-			name = Viewer;
+			name = FlickrGallery;
 			productName = Viewer;
-			productReference = D10A1B4C214D4C2300BB9D66 /* Viewer.app */;
+			productReference = D10A1B4C214D4C2300BB9D66 /* FlickrGallery.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -263,7 +263,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D10A1B47214D4C2300BB9D66 /* Build configuration list for PBXProject "Viewer" */;
+			buildConfigurationList = D10A1B47214D4C2300BB9D66 /* Build configuration list for PBXProject "FlickrGallery" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -276,7 +276,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D10A1B4B214D4C2300BB9D66 /* Viewer */,
+				D10A1B4B214D4C2300BB9D66 /* FlickrGallery */,
 			);
 		};
 /* End PBXProject section */
@@ -488,7 +488,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VNN7YY9T4F;
-				INFOPLIST_FILE = Viewer/Info.plist;
+				INFOPLIST_FILE = FlickrGallery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ius.Viewers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -504,7 +504,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VNN7YY9T4F;
-				INFOPLIST_FILE = Viewer/Info.plist;
+				INFOPLIST_FILE = FlickrGallery/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ius.Viewers;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -516,7 +516,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D10A1B47214D4C2300BB9D66 /* Build configuration list for PBXProject "Viewer" */ = {
+		D10A1B47214D4C2300BB9D66 /* Build configuration list for PBXProject "FlickrGallery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D10A1B5C214D4C2300BB9D66 /* Debug */,
@@ -525,7 +525,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D10A1B5E214D4C2300BB9D66 /* Build configuration list for PBXNativeTarget "Viewer" */ = {
+		D10A1B5E214D4C2300BB9D66 /* Build configuration list for PBXNativeTarget "FlickrGallery" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D10A1B5F214D4C2300BB9D66 /* Debug */,

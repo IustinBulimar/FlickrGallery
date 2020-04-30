@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D10A1B4B214D4C2300BB9D66"
-               BuildableName = "Viewer.app"
-               BlueprintName = "Viewer"
-               ReferencedContainer = "container:Viewer.xcodeproj">
+               BuildableName = "FlickrGallery.app"
+               BlueprintName = "FlickrGallery"
+               ReferencedContainer = "container:FlickrGallery.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D10A1B4B214D4C2300BB9D66"
-            BuildableName = "Viewer.app"
-            BlueprintName = "Viewer"
-            ReferencedContainer = "container:Viewer.xcodeproj">
+            BuildableName = "FlickrGallery.app"
+            BlueprintName = "FlickrGallery"
+            ReferencedContainer = "container:FlickrGallery.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D10A1B4B214D4C2300BB9D66"
-            BuildableName = "Viewer.app"
-            BlueprintName = "Viewer"
-            ReferencedContainer = "container:Viewer.xcodeproj">
+            BuildableName = "FlickrGallery.app"
+            BlueprintName = "FlickrGallery"
+            ReferencedContainer = "container:FlickrGallery.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
